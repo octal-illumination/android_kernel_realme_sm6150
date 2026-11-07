@@ -779,3 +779,10 @@ CONFIG_OPLUS_FEATURE_EXT4_ASYNC_DISCARD=y
 
 # Wlan
 CONFIG_QCA_CLD_WLAN=y
+# NOTE (2026-11-07, octal-illumination): modpost reports only a COUNT of section mismatches unless
+# this is set ('To see full details build your kernel with: make CONFIG_DEBUG_SECTION_MISMATCH=y').
+# A count with no detail is exactly the kind of warning that gets waved through, and section
+# mismatches are real: a reference from a non-init section into __init memory is a use-after-free
+# waiting to happen. WARN_ONLY keeps it non-fatal while the details are collected and fixed.
+CONFIG_DEBUG_SECTION_MISMATCH=y
+CONFIG_SECTION_MISMATCH_WARN_ONLY=y
